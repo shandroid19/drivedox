@@ -1,3 +1,25 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+:root{
+    font-size: large;
+    font-family: 'Open Sans', sans-serif;
+}
 .textshadow {
   text-shadow: 0.2rem 0.2rem 0.5rem black;
+}
+
+.filescard{
+    height:50vh;
+    overflow-y: scroll;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.framebox {
+    height:70vh;
+    width: 50vw;
+    object-fit: contain;
 }

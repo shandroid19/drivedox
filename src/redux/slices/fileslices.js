@@ -1,16 +1,40 @@
 import { createSlice,current } from "@reduxjs/toolkit";
-
+import { useSelector } from "react-redux"
 export const fileSlice = createSlice({
     name:'files',
     initialState:{
-        rows:[],            //to store the rows 
+        files:[],            //to store the rows
+        user:"",
+        selected:"" ,
+        filesloading:"",
+        contentloading:false,
+        filesloading:false
     },
     reducers:{
         populate: (state,action)=>{
-            console.log(action.payload);
-            return{...state,rows :action.payload} 
+            state.files=action.payload
+            // return{...state,files :action.payload} 
         },
-
+        setuser: (state,action)=>{
+            state.user=action.payload
+            // return{...state,user :action.payload} 
+        },
+        setselected: (state,action)=>{
+            state.selected=action.payload
+            // return{...state,selected :action.payload} 
+        },
+        setcontentloading:(state)=>{
+            return{...state, contentloading :true} 
+        },
+        setfilesloading:(state)=>{
+            return{...state,filesloading :true} 
+        },
+        stopcontentloading:(state)=>{
+            return{...state, contentloading :false} 
+        },
+        stopfilesloading:(state)=>{
+            return{...state,filesloading :false} 
+        }
         // apply: (state,action)=>{
         //     state.todelete = action.payload;
         // },
@@ -39,5 +63,5 @@ export const fileSlice = createSlice({
     }
 })
 
-export const {populate} = fileSlice.actions;   //exporting all the actions 
+export const {populate,setuser,setselected,setcontentloading,setfilesloading,stopcontentloading,stopfilesloading} = fileSlice.actions;   //exporting all the actions 
 export default fileSlice.reducer;
