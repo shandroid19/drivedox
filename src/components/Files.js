@@ -6,7 +6,6 @@ export default function Files(){
     const files = useSelector((state)=>state.files.files);  
     const user = useSelector((state)=>state.files.user);  
     const dispatch = useDispatch();
-    const filesloading = useSelector((state)=>state.files.filesloading)
     const listfiles = ()=>{
         const data = files.files.map((item,key)=>{
             return <li key={key} onClick={()=>{handleClick(item.id)}} className="list-group-item py-3">{item.name}</li>
@@ -34,14 +33,7 @@ export default function Files(){
         </div>
         <div className="card-content filescard">
         <ul className="list-group">
-        {filesloading?
-        <div className="row d-flex justify-content-center align-items-center mt-5">
-        <div className="spinner-border text-primary text-center" role="status">
-            <span className="sr-only"></span>
-        </div>
-        </div>
-        :
-        files.files?listfiles():message()}
+        {files.files?listfiles():message()}
         </ul> 
         </div>  
     </div>

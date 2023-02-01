@@ -6,9 +6,9 @@ export const fileSlice = createSlice({
         files:[],            //to store the rows
         user:"",
         selected:"" ,
-        filesloading:"",
+       
         contentloading:false,
-        filesloading:false
+       
     },
     reducers:{
         populate: (state,action)=>{
@@ -26,15 +26,11 @@ export const fileSlice = createSlice({
         setcontentloading:(state)=>{
             return{...state, contentloading :true} 
         },
-        setfilesloading:(state)=>{
-            return{...state,filesloading :true} 
-        },
+
         stopcontentloading:(state)=>{
             return{...state, contentloading :false} 
         },
-        stopfilesloading:(state)=>{
-            return{...state,filesloading :false} 
-        }
+
         // apply: (state,action)=>{
         //     state.todelete = action.payload;
         // },
@@ -63,5 +59,5 @@ export const fileSlice = createSlice({
     }
 })
 
-export const {populate,setuser,setselected,setcontentloading,setfilesloading,stopcontentloading,stopfilesloading} = fileSlice.actions;   //exporting all the actions 
+export const {populate,setuser,setselected,setcontentloading,stopcontentloading} = fileSlice.actions;   //exporting all the actions 
 export default fileSlice.reducer;

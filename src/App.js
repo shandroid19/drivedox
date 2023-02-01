@@ -20,7 +20,8 @@ function App() {
                 </p>
                 <p>
                   For testing purposes<br/>
-                    Email: 
+                    Email: drivedoxtesting@gmail.com<br></br>
+                    password:drivedoxpassword
                 </p>
             </div>
      <div className = 'container my-5'>

@@ -1,6 +1,6 @@
 import { GoogleLogin } from '@react-oauth/google';
 import { gapi } from 'gapi-script';
-import { populate,setuser, stopfilesloading,setfilesloading,setselected } from "../redux/slices/fileslices";
+import { populate,setuser,setselected } from "../redux/slices/fileslices";
 import { useSelector, useDispatch } from 'react-redux';
 export default function Header(){
     const dispatch = useDispatch();
@@ -34,13 +34,13 @@ export default function Header(){
             dispatch(populate(res));
 
           });
-          dispatch(stopfilesloading())
       };
       const handleSignOutClick = (event) => {
         dispatch(setuser(""));
         dispatch(populate([]));
         dispatch(setselected(""));
         window.location.reload();
+        gapi.auth2.getAuthInstance().signOut();
       }; 
 
 
@@ -49,7 +49,6 @@ export default function Header(){
       };
 
     const handleClientLoad = () => {
-        dispatch(setfilesloading())
         gapi.load('client:auth2', initClient);
       };
       const initClient = () => {
@@ -81,17 +80,12 @@ export default function Header(){
               <h1 className='text-white textshadow'>DriveDox</h1>
               <h4 className='text-white textshadow mb-5'>Find your docx files</h4>
               {user.length>0?<h4 className='text-white textshadow mb-5'>Welcome {user}</h4>:<></>}
-              {user.length==0?<GoogleLogin
+              {user.length==0?
+              <button className='btn-lg btn btn-success' onClick={handleClientLoad}
                 onSuccess={credentialResponse => {
                     handleClientLoad();
                 }}
-                onError={() => {
-                    console.log('Login Failed');
-                }}
-                cookiePolicy={'single_host_origin'}
-                isSignedIn={true}
-                useOneTap
-                />:
+                >Login</button>:
                 <a className=" btn btn-danger btn-lg" onClick={handleSignOutClick} >Logout</a>}
                 
             </div>
